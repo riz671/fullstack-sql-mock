@@ -13,7 +13,7 @@ const controller = {
   // fetch one item from db
   getOne: (req, res) => {
     dbHelpers.getOneProduct(req.params, (err, result) => {
-      err ? res.status(404).send(err) : res.status(204).json(result);
+      err ? res.status(404).send(err) : res.status(200).json(result);
     });
   },
 
