@@ -3,6 +3,7 @@
 const router = require('express').Router();
 const controller = require('./controller.js');
 
+// route to products path
 router
   .route('/products')
   .get(controller.get)
@@ -10,6 +11,18 @@ router
 
 router
   .route('/products/:_id')
+  .put(controller.put)
+  .delete(controller.delete);
+
+
+// route to name path
+router
+  .route('/name')
+  .get(controller.get)
+  .post(controller.post);
+
+router
+  .route('/name/:_id')
   .put(controller.put)
   .delete(controller.delete);
 
