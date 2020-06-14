@@ -15,6 +15,7 @@ const Products = (props) => {
       <label>Current Bid: ${curr_bid}</label>
       <br />
       <label>Bid Closes In: {ends_in} hours</label>
+      <br />
     </div>
   )
 }
