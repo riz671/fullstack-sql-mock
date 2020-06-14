@@ -6,17 +6,34 @@ import Search from './Search';
 import axios from 'axios';
 
 export default class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
 
+    this.state = {
+      currentProductDisplayed = '';
+      allProducts =[];
     }
 
+    this.fetchAllProducts = this.fetchAllProducts.bind(this);
   }
 
-  render(){
-  
-    return(
+  // gets all product from db
+  // changes state of allProducts
+  fetchAllProducts() {
+    axios.get('/products')
+      .then(response => {
+        this.setState({ allProducts: response.data })
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    this.fetchAllProducts();
+  }
+
+  render() {
+
+    return (
       <div>
         <div>
           <h1>EBID</h1>
@@ -32,7 +49,7 @@ export default class App extends React.Component {
             <ProductViewer />
           </div>
           <div className="col-md-5 product-list-container">
-            <ProductList  />
+            <ProductList allProducts={this.state.allProducts} />
           </div>
         </div>
       </div>
