@@ -16,6 +16,7 @@ export default class App extends React.Component {
 
     this.fetchAllProducts = this.fetchAllProducts.bind(this);
     this.fetchOneItemOnClick = this.fetchOneItemOnClick.bind(this);
+    this.postBid = this.postBid.bind(this);
   }
 
   // gets all product from db
@@ -24,8 +25,7 @@ export default class App extends React.Component {
     axios.get('/products')
       .then(response => {
         this.setState({
-          allProducts: response.data,
-          productBeingViewed: response.data[0]
+          allProducts: response.data
         })
       })
       .catch(err => console.log(err));
@@ -37,6 +37,14 @@ export default class App extends React.Component {
         this.setState({ productBeingViewed: response.data[0] })
       })
       .catch(err => console.log(err));
+  }
+
+  postBid(id, bid) {
+    axios.put(`/name/${id}`, { curr_bid: bid })
+      .then(() => {
+        this.fetchAllProducts();
+        // see if id only works as well
+      })
   }
 
   componentDidMount() {
@@ -62,7 +70,10 @@ export default class App extends React.Component {
         <div className="row main-container">
 
           <div className="col-md-7 product-viewer-container">
-            <ProductViewer productBeingViewed={this.state.productBeingViewed} />
+            <ProductViewer
+              productBeingViewed={this.state.productBeingViewed}
+              postBid={this.postBid}
+            />
           </div>
 
           <div className="col-md-5 product-list-container">
