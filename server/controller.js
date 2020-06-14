@@ -13,6 +13,7 @@ const controller = {
   // sends to model for posting item to db &&
   // checks if products was posted
   post: (req, res) => {
+    console.log(req.body);
     dbHelpers.postProductsHelper(req.body, (err, result) => {
       err ? res.status(404).send(err) : res.status(201).send('successful post');
     });

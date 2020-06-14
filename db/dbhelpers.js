@@ -17,6 +17,7 @@ const dbHelpers = {
   // TODO: ADD VALUE KEYS AFTER VALUES
   postProductsHelper: (body, callback) => {
     let { item, min_cost, curr_bid, ends_in, image } = body;
+    // console.log(body);
 
     let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ("${item}", ${min_cost}, ${curr_bid}, ${ends_in}, "${image}");`;
 
