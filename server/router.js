@@ -21,12 +21,11 @@ router
 // TODO: gets only 1 products -> get should point to an id params
 router
   .route('/name')
-  .get(controller.get)
   .post(controller.post);
 
-// MAY NOT NEED PARAMS -> Come back to this
 router
   .route('/name/:_id')
+  .get(controller.getOne)
   .put(controller.put)
   .delete(controller.delete);
 

@@ -12,6 +12,16 @@ const dbHelpers = {
     });
   },
 
+  getOneProduct: (params, callback) => {
+    let { _id } = params;
+
+    let queryString = `SELECT * FROM ItemInformation WHERE id = ${_id};`;
+
+    db.query(queryString, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
+    });
+  },
+
   // add an item to db
   // body is object holding all values. desctructured for ease
   // TODO: ADD VALUE KEYS AFTER VALUES
