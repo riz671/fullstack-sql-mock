@@ -42,9 +42,9 @@ Being the amazing engineer you are, you break down the provided specs into the f
 
   1. DONE -> Build out and debug your server and database connection so that on postman requests to the proper endpoints, you will get an expected response (i.e - "Hello from GET") (note: you may have to refactor some of the existing code)
   2. DONE -> In the path [/db/index.js] write out your database connection.
-  3. In the path [/db/models.js] OR [/db/schema.sql] write a schema for Products that includes the necessary keys.
-  4. In the path [/db/seed.js] write code that will seed the database with at least 10 random products (a random product generator has been provided. You will not need to modify it other than where the comment prompts you to write code)
-  5. In the path [/db/dbhelpers.js] write code to handle your database queries (make sure they are connected to your server so that with postman, each request works the way they should)
+  3. DONE -> In the path [/db/models.js] OR [/db/schema.sql] write a schema for Products that includes the necessary keys.
+  4. DONE -> In the path [/db/seed.js] write code that will seed the database with at least 10 random products (a random product generator has been provided. You will not need to modify it other than where the comment prompts you to write code)
+  5. DONE -> In the path [/db/dbhelpers.js] write code to handle your database queries (make sure they are connected to your server so that with postman, each request works the way they should)
 
   Now that your server and database is hooked up, move on to the front-end
 
@@ -55,9 +55,9 @@ Being the amazing engineer you are, you break down the provided specs into the f
   (Do not worry if your classnames do not necessary match the stylesheet's. As previously stated, make the app functional. Only make it look better if you finish everything before your own set time-limit)
 
     - Ensure the following functionalities:
-      - [ ] on page load - make sure that 10 products render on the side, and one product renders in the product view.
-      - [ ] view product - implement a click function that allows the client to click and view the details for each product
-      - [ ] bidding - make sure a user can bid on a product so that their current bid updates it
+      - [ X ] on page load - make sure that 10 products render on the side, and one product renders in the product view.
+      - [ X ] view product - implement a click function that allows the client to click and view the details for each product
+      - [ X ] bidding - make sure a user can bid on a product so that their current bid updates it
 
   6. Let's go a few steps further. Refactor your code to implement the following
 

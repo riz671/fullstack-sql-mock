@@ -7,12 +7,14 @@ class Search extends React.Component {
     this.state = {
       productName: ''
     }
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    }, () => console.log(this.state))
   }
 
   render() {

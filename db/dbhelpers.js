@@ -22,9 +22,18 @@ const dbHelpers = {
     });
   },
 
+  getProductBeingSearched: (params, callback) => {
+    let { name } = params;
+
+    let queryString = `SELECT * FROM ItemInformation WHERE item = "${name}";`;
+
+    db.query(queryString, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
+    });
+  },
+
   // add an item to db
   // body is object holding all values. desctructured for ease
-  // TODO: ADD VALUE KEYS AFTER VALUES
   postProductsHelper: (body, callback) => {
     let { item, min_cost, curr_bid, ends_in, item_image } = body;
 

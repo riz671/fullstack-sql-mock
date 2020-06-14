@@ -53,7 +53,11 @@ export default class App extends React.Component {
 
   // display search item with itemname matching db exactly
   displaySearchedItem(itemName) {
-    axios.get(`./name/${itemName}`)
+    axios.get(`/products/${itemName}`)
+      .catch(() => {
+        this.fetchAllProducts();
+        console.log('could not find product');
+      })
       .then(response => {
         this.setState({ productBeingViewed: response.data[0] })
       })
