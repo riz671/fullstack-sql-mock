@@ -35,7 +35,7 @@ const dbHelpers = {
     });
   },
 
-  // delete at id in in params
+  // delete at id in in param
   deleteProductHelper: (params, callback) => {
     let queryString = `DELETE FROM ItemInformation WHERE id = ${/*TODO*/};`;
 

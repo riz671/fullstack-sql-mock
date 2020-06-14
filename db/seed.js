@@ -1,12 +1,13 @@
+/* eslint-disable camelcase */
 
 // const Products = require('./models.js');
-// const db = require('./index.js');
+const db = require('./index.js');
 
-// Fill in the definition of insertMockData so that when 
-// this file is run in the terminal with `node seed.js`, 
+// Fill in the definition of insertMockData so that when
+// this file is run in the terminal with `node seed.js`,
 // all 10 products are inserted into the database
 
-const adjectives = ['Used', 'New', 'Refurbished', "PARTS ONLY"];
+const adjectives = ['Used', 'New', 'Refurbished', 'PARTS ONLY'];
 const brand = ['Sonny', 'Ninetendo', 'Microhard', 'Azeus', 'Sansong', 'Apull', 'Wowhey', 'Illogitech'];
 const noun = ['Smartphone', 'Monitor', 'Headphones', 'Earbuds', 'Trashcan', 'Laptop', 'Gaming System', 'TV', 'Personal Air Conditioning Unit', 'Gaming Mouse', 'Tablet', 'Flip Phone', 'Pager'];
 
@@ -16,24 +17,44 @@ const createProduct = () => {
   product.min_cost = parseFloat(Math.ceil(Math.random() * Math.ceil(1000)));
   product.curr_bid = parseFloat(Math.ceil(Math.random() * Math.ceil(10000)));
   product.ends_in = Math.ceil(Math.random() * Math.ceil(3));
-  // the lorempixel images render very slowly for some reason. 
+  // the lorempixel images render very slowly for some reason.
   // don't worry too much if some images load while the others don't.
   // it's probably not your fault
   product.image = `http://lorempixel.com/400/400/technics/${Math.ceil(Math.random() * Math.ceil(10))}`;
-  return product
+  return product;
 };
 
 const createProducts = () => {
   let productsArr = [];
-  for(let i = 0; i < 10; i++){
-    productsArr.push(createProduct())
+  for (let i = 0; i < 10; i++) {
+    productsArr.push(createProduct());
   }
-  return productsArr
-}
-
-const insertMockData = function() {
-  // Complete me please
+  return productsArr;
 };
+
+// post each product into database
+// like post
+const insertMockData = function () {
+  // store array of products
+  let mockProducts = createProducts();
+
+  // store each product in eBay db
+  mockProducts.forEach(product => {
+    let { item, min_cost, curr_bid, ends_in, image } = product;
+
+    let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ("${item}", ${min_cost}, ${curr_bid}, ${ends_in}, "${image}");`;
+
+    // send error ot success message
+    db.query(queryString, (err, result) => {
+      err ? console.err(err) : console.log('success in posting mock data');
+    });
+
+  });
+
+};
+
+// invoked once to play w/ some data
+// insertMockData();
 
 // NOTE: DO NOT invoke this function as part of your
 // server code - it is meant to only be run once so that
