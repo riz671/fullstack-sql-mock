@@ -8,6 +8,6 @@ const db = mysql.createConnection({
   database: 'EBayDB'
 });
 
-connection.connect();
+db.connect();
 
 module.exports = db;
