@@ -22,9 +22,15 @@ const controller = {
   put: (req, res) => {
     res.send('put!');
   },
+
+  // send delete request to dbhelpers
+  // check if product was deleted
   delete: (req, res) => {
-    res.send('delete!');
+    dbHelpers.deleteProductHelper(req.params, (err, result) => {
+      err ? res.status(404).send(err) : res.status(201).send('successful post');
+    });
   }
+
 };
 
 module.exports = controller;

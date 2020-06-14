@@ -16,10 +16,9 @@ const dbHelpers = {
   // body is object holding all values. desctructured for ease
   // TODO: ADD VALUE KEYS AFTER VALUES
   postProductsHelper: (body, callback) => {
-    let { item, min_cost, curr_bid, ends_in, image } = body;
-    // console.log(body);
+    let { item, min_cost, curr_bid, ends_in, item_image } = body;
 
-    let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ("${item}", ${min_cost}, ${curr_bid}, ${ends_in}, "${image}");`;
+    let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ("${item}", ${min_cost}, ${curr_bid}, ${ends_in}, "${item_image}");`;
 
     db.query(queryString, (err, result) => {
       err ? callback(err, null) : callback(null, result);
@@ -40,13 +39,14 @@ const dbHelpers = {
   // },
 
   // // delete at id in in param
-  // deleteProductHelper: (params, callback) => {
-  //   let queryString = `DELETE FROM ItemInformation WHERE id = ${/*TODO*/};`;
+  deleteProductHelper: (params, callback) => {
+    console.log(params._id);
+    let queryString = `DELETE FROM ItemInformation WHERE id = ${params._id};`;
 
-  //   db.query(queryString, (err, result) => {
-  //     err ? callback(err, null) : callback(null, result);
-  //   });
-  // }
+    db.query(queryString, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
+    });
+  }
 };
 
 module.exports = dbHelpers;
