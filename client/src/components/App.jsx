@@ -31,7 +31,6 @@ export default class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-
   fetchOneItemOnClick(id) {
     axios.get(`/name/${id}`)
       .then(response => {

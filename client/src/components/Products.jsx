@@ -5,7 +5,7 @@ const Products = (props) => {
   let { id, item_image, item, min_cost, curr_bid, ends_in } = props.product;
 
   return (
-    <div className='product-list-entry' onClick={props.fetchOneItemOnClick(id)}>
+    <div className='product-list-entry' onClick={() => props.fetchOneItemOnClick(id)}>
       <img src={item_image} alt="" />
       <br />
       <label>Item Name: {item}</label>
