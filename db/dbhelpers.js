@@ -26,17 +26,17 @@ const dbHelpers = {
   },
 
   // needs body to update info
-  // DO I REALLY NEED PARAMS IF I CAN SUPPLY ID FROM BODY?
-  //// probably need it, but an idea
-  // updating some vals. Not updating name, min_cost, ends_in(?), item_image
-  // LOL updating only one val
-  // updateProductHelper: (params, body, callback) => {
-  //   let queryString = `UPDATE ItemInformation SET curr_bid = ${/*TODO*/} WHERE id = ${/*TODO*/};`;
+  // updating curr_bid only.
+  updateProductHelper: (params, body, callback) => {
+    let { _id } = params;
+    let { curr_bid } = body;
 
-  //   db.query(queryString, (err, result) => {
-  //     err ? callback(err, null) : callback(null, result);
-  //   });
-  // },
+    let queryString = `UPDATE ItemInformation SET curr_bid = ${curr_bid} WHERE id = ${_id};`;
+
+    db.query(queryString, (err, result) => {
+      err ? callback(err, null) : callback(null, result);
+    });
+  },
 
   // // delete at id in in param
   deleteProductHelper: (params, callback) => {

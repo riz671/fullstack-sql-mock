@@ -19,18 +19,21 @@ const controller = {
     });
   },
 
+  // send put request to dbhelpers
+  // check if product was updated
   put: (req, res) => {
-    res.send('put!');
+    dbHelpers.updateProductHelper(req.params, req.body, (err, result) => {
+      err ? res.status(404).send(err) : res.status(202).send('updated post');
+    });
   },
 
   // send delete request to dbhelpers
   // check if product was deleted
   delete: (req, res) => {
     dbHelpers.deleteProductHelper(req.params, (err, result) => {
-      err ? res.status(404).send(err) : res.status(201).send('successful post');
+      err ? res.status(404).send(err) : res.status(203).send('deleted post');
     });
   }
-
 };
 
 module.exports = controller;
