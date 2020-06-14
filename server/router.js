@@ -4,6 +4,7 @@ const router = require('express').Router();
 const controller = require('./controller.js');
 
 // route to products path
+// gets all products
 router
   .route('/products')
   .get(controller.get)
@@ -16,6 +17,8 @@ router
 
 
 // route to name path
+
+// TODO: gets only 1 products -> get should point to an id params
 router
   .route('/name')
   .get(controller.get)
