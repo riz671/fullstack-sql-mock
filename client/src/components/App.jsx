@@ -10,8 +10,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      currentProductDisplayed = '';
-      allProducts =[];
+      currentProductDisplayed: '',
+      allProducts: []
     }
 
     this.fetchAllProducts = this.fetchAllProducts.bind(this);
