@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // complete and fix the dbhelpers
 const db = require('./index.js');
 
@@ -11,11 +12,13 @@ const dbHelpers = {
     });
   },
 
-  // add 1 item to db
-  // body is object holding all values
+  // add an item to db
+  // body is object holding all values. desctructured for ease
   // TODO: ADD VALUE KEYS AFTER VALUES
   postProductsHelper: (body, callback) => {
-    let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ${/*TODO ===>*/} ("${body}", ${body}, ${body}, ${body}, "${body}");`;
+    let { item, min_cost, curr_bid, ends_in, image } = body;
+
+    let queryString = `INSERT INTO ItemInformation (item, min_cost, curr_bid, ends_in, item_image) VALUES ("${item}", ${min_cost}, ${curr_bid}, ${ends_in}, "${image}");`;
 
     db.query(queryString, (err, result) => {
       err ? callback(err, null) : callback(null, result);
@@ -27,22 +30,22 @@ const dbHelpers = {
   //// probably need it, but an idea
   // updating some vals. Not updating name, min_cost, ends_in(?), item_image
   // LOL updating only one val
-  updateProductHelper: (params, body, callback) => {
-    let queryString = `UPDATE ItemInformation SET curr_bid = ${/*TODO*/} WHERE id = ${/*TODO*/};`;
+  // updateProductHelper: (params, body, callback) => {
+  //   let queryString = `UPDATE ItemInformation SET curr_bid = ${/*TODO*/} WHERE id = ${/*TODO*/};`;
 
-    db.query(queryString, (err, result) => {
-      err ? callback(err, null) : callback(null, result);
-    });
-  },
+  //   db.query(queryString, (err, result) => {
+  //     err ? callback(err, null) : callback(null, result);
+  //   });
+  // },
 
-  // delete at id in in param
-  deleteProductHelper: (params, callback) => {
-    let queryString = `DELETE FROM ItemInformation WHERE id = ${/*TODO*/};`;
+  // // delete at id in in param
+  // deleteProductHelper: (params, callback) => {
+  //   let queryString = `DELETE FROM ItemInformation WHERE id = ${/*TODO*/};`;
 
-    db.query(queryString, (err, result) => {
-      err ? callback(err, null) : callback(null, result);
-    });
-  }
+  //   db.query(queryString, (err, result) => {
+  //     err ? callback(err, null) : callback(null, result);
+  //   });
+  // }
 };
 
 module.exports = dbHelpers;
