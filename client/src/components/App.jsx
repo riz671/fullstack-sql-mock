@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      currentProductDisplayed: '',
+      productBeingViewed: '',
       allProducts: []
     }
 
@@ -22,7 +22,10 @@ export default class App extends React.Component {
   fetchAllProducts() {
     axios.get('/products')
       .then(response => {
-        this.setState({ allProducts: response.data })
+        this.setState({
+          allProducts: response.data,
+          productBeingViewed: response.data[0]
+        })
       })
       .catch(err => console.log(err));
   }
@@ -35,22 +38,28 @@ export default class App extends React.Component {
 
     return (
       <div>
+
         <div>
           <h1>EBID</h1>
           <h3>The jankiest ebay rip-off you'll ever see (probably)</h3>
         </div>
+
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
             <Search />
           </div>
         </nav>
+
         <div className="row main-container">
+
           <div className="col-md-7 product-viewer-container">
-            <ProductViewer />
+            <ProductViewer productBeingViewed={this.state.productBeingViewed} />
           </div>
+
           <div className="col-md-5 product-list-container">
             <ProductList allProducts={this.state.allProducts} />
           </div>
+
         </div>
       </div>
     )
