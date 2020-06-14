@@ -15,6 +15,9 @@ router
   .put(controller.put)
   .delete(controller.delete);
 
+router
+  .route('/products/:name')
+  .get(controller.getSearchedOnly);
 
 // route to name path
 

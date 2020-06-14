@@ -17,6 +17,13 @@ const controller = {
     });
   },
 
+  // fetch searched item by name only from db
+  getSearchedOnly: (req, res) => {
+    dbHelpers.getProductBeingSearched(req.params, (err, result) => {
+      err ? res.status(404).send(err) : res.status(200).json(result);
+    });
+  },
+
   // sends to model for posting item to db &&
   // checks if products was posted
   post: (req, res) => {
@@ -30,6 +37,7 @@ const controller = {
   // check if product was updated
   put: (req, res) => {
     dbHelpers.updateProductHelper(req.params, req.body, (err, result) => {
+      console.log(req.body);
       err ? res.status(404).send(err) : res.status(202).send('updated post');
     });
   },
