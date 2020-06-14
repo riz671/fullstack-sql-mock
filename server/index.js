@@ -10,6 +10,11 @@ const port = 3000;
 
 const server = express();
 
+server.use(bodyparser.json());
+server.use(bodyparser.urlencoded({ extended: true }));
+server.use(morgan('dev'));
+server.use(cors());
+
 server.use('/', express.static(path.join(__dirname + '/../client/dist')));
 
 // should send data to the router to correct path.
