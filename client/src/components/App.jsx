@@ -17,6 +17,7 @@ export default class App extends React.Component {
     this.fetchAllProducts = this.fetchAllProducts.bind(this);
     this.fetchOneItemOnClick = this.fetchOneItemOnClick.bind(this);
     this.postBid = this.postBid.bind(this);
+    this.displaySearchedItem = this.displaySearchedItem.bind(this);
   }
 
   // gets all product from db
@@ -31,6 +32,7 @@ export default class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  // fetches one item to prodcut viewer
   fetchOneItemOnClick(id) {
     axios.get(`/name/${id}`)
       .then(response => {
@@ -39,13 +41,23 @@ export default class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  // post new bid to id
+  // then render list and viewed product
   postBid(id, bid) {
     axios.put(`/name/${id}`, { curr_bid: bid })
       .then(() => {
         this.fetchAllProducts();
-        // see if id only works as well
         this.fetchOneItemOnClick(id)
       })
+  }
+
+  // display search item with itemname matching db exactly
+  displaySearchedItem(itemName) {
+    axios.get(`./name/${itemName}`)
+      .then(response => {
+        this.setState({ productBeingViewed: response.data[0] })
+      })
+      .catch(err => console.log(err))
   }
 
   componentDidMount() {
@@ -64,7 +76,9 @@ export default class App extends React.Component {
 
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search
+              displaySearchedItem={this.displaySearchedItem}
+            />
           </div>
         </nav>
 
