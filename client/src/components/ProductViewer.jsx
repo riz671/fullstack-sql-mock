@@ -35,7 +35,7 @@ export default class ProductViewer extends React.Component {
         <label>Current Bid: ${curr_bid}
           <input name='new_bid' type="text" size="6" onChange={this.handleChange} />
           <button
-            onClick={() => { this.props.postBid(id, this.state.new_bid) }}
+            onClick={() => { this.props.postBid(id, parseInt(this.state.new_bid)) }}
           > Bid! </button>
         </label>
         <br />

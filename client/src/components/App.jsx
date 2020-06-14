@@ -44,6 +44,7 @@ export default class App extends React.Component {
       .then(() => {
         this.fetchAllProducts();
         // see if id only works as well
+        this.fetchOneItemOnClick(id)
       })
   }
 
