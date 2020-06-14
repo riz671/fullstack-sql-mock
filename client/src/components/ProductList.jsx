@@ -6,7 +6,12 @@ const ProductList = (props) => {
   return (
     <div className='product-list'>
       {props.allProducts.map((product, index) => {
-        return (<Products product={product} key={index} />)
+        return (
+          <Products
+            product={product}
+            key={index}
+            fetchOneItemOnClick={props.fetchOneItemOnClick}
+          />)
       })}
     </div>
   )

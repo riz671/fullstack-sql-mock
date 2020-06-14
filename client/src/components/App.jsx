@@ -15,6 +15,7 @@ export default class App extends React.Component {
     }
 
     this.fetchAllProducts = this.fetchAllProducts.bind(this);
+    this.fetchOneItemOnClick = this.fetchOneItemOnClick.bind(this);
   }
 
   // gets all product from db
@@ -31,6 +32,13 @@ export default class App extends React.Component {
   }
 
 
+  fetchOneItemOnClick(id) {
+    axios.get(`/name/${id}`)
+      .then(response => {
+        this.setState({ productBeingViewed: response.data[0] })
+      })
+      .catch(err => console.log(err));
+  }
 
   componentDidMount() {
     this.fetchAllProducts();
@@ -59,7 +67,10 @@ export default class App extends React.Component {
           </div>
 
           <div className="col-md-5 product-list-container">
-            <ProductList allProducts={this.state.allProducts} />
+            <ProductList
+              allProducts={this.state.allProducts}
+              fetchOneItemOnClick={this.fetchOneItemOnClick}
+            />
           </div>
 
         </div>
